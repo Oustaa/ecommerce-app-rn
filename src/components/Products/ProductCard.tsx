@@ -1,31 +1,19 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { getImgUrl } from "../../utils/imageConstructor";
+import { ProductType } from "../../core/productTypes";
+import { COLORS, SIZES } from "../../constants/intex";
+import sizes from "../../constants/sizes";
 
-const product = {
-  _id: "645e74478f43e3fa7ad31390",
-  title:
-    "Latest and Improved! GlassOuse V1.4 Wireless Bluetooth Wearable Hands Free Mouse for Gamers, People with Disabilities & Others!!!",
-  price: 589.77,
-  currency: "USD",
-  images: [
-    "1683911751952.jpg",
-    "1683911751955.jpg",
-    "1683911751956.jpg",
-    "1683911751956.jpg",
-    "1683911751957.jpg",
-  ],
-  store: "GlassOuse",
-};
-
-const ProductCard = () => {
+const ProductCard: FC<{ product: ProductType }> = ({ product }) => {
   return (
-    <View>
+    <View style={styles.ImageContainer}>
       <Image
-        source={{
-          uri: getImgUrl(`${product.store}/products/${product.images[0]}`),
-        }}
         style={styles.imageStyle}
+        resizeMode="center"
+        source={{
+          uri: `${process.env.API_URL}/images/${product.store}/products/${product.images[0]}`,
+        }}
       />
     </View>
   );
@@ -34,8 +22,17 @@ const ProductCard = () => {
 export default ProductCard;
 
 const styles = StyleSheet.create({
+  ImageContainer: {
+    flex: 1,
+    marginBottom: SIZES.sm,
+    padding: SIZES.sm,
+    borderRadius: SIZES.sm,
+    overflow: "hidden",
+    borderWidth: 0.2,
+    borderColor: COLORS.primaryGray300,
+  },
   imageStyle: {
-    width: 200,
+    width: "100%",
     height: 200,
   },
 });
