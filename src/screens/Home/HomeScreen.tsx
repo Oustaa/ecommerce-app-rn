@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { globalStyles } from "../../styles/globalStyles";
 import LatestProducts from "./latestProducts";
+import ShopByCategory from "./ShopByCategory";
 
 const HomeScreen = () => {
   return (
-    <View>
+    <View style={globalStyles.screenContainer}>
+      <ShopByCategory />
       <LatestProducts />
     </View>
   );
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({});

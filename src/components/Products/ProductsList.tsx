@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import ProductCard from "./ProductCard";
 import { ProductType } from "../../core/productTypes";
 import { COLORS, SIZES } from "../../constants/intex";
+import Title from "../ui/Title";
 
 const ProductsList: FC<{
   products: ProductType[];
@@ -12,7 +13,7 @@ const ProductsList: FC<{
 }> = ({ products, numColumns = 2, title }) => {
   return (
     <View style={styles.productsListContainer}>
-      <Text style={styles.productsListTitle}>{title}</Text>
+      <Title>{title}</Title>
       <FlatList
         data={products}
         renderItem={({ item }) => {
@@ -32,11 +33,5 @@ const styles = StyleSheet.create({
     padding: SIZES.sm,
     paddingBottom: 0,
     backgroundColor: "white",
-  },
-  productsListTitle: {
-    fontSize: SIZES.md,
-    marginBottom: SIZES.sm,
-    fontWeight: "400",
-    color: COLORS.primaryGray300,
   },
 });
