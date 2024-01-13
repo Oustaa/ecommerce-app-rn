@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React, { FC } from "react";
+
 import { getImgUrl } from "../../utils/imageConstructor";
 import { ProductType } from "../../core/productTypes";
 import { COLORS, SIZES } from "../../constants/intex";
@@ -26,13 +27,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: SIZES.sm,
     padding: SIZES.sm,
-    borderRadius: SIZES.sm,
+    borderRadius: SIZES.xs,
     overflow: "hidden",
     borderWidth: 0.2,
     borderColor: COLORS.primaryGray300,
   },
   imageStyle: {
     width: "100%",
-    height: 200,
+    aspectRatio: 1,
   },
 });

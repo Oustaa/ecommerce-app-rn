@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 
 import ProductCard from "./ProductCard";
 import { ProductType } from "../../core/productTypes";
-import { SIZES } from "../../constants/intex";
+import { COLORS, SIZES } from "../../constants/intex";
 
 const ProductsList: FC<{
   products: ProductType[];
@@ -34,8 +34,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   productsListTitle: {
-    fontSize: SIZES.lg,
+    fontSize: SIZES.md,
     marginBottom: SIZES.sm,
-    fontWeight: "500",
+    fontWeight: "400",
+    color: COLORS.primaryGray300,
   },
 });
