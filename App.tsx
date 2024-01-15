@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { Feather } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -41,6 +42,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      <StatusBar style="light" />
     </View>
   );
 }

@@ -1,14 +1,14 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { COLORS, SIZES } from "../../constants/intex";
 
-const category = {
-  _id: "64551d611e8c8ddc4b017a00",
-  name: "Toys and Games",
-  image: "toys-and-games.jpg",
-};
+interface categoryInterface {
+  _id: string;
+  name: string;
+  image: string;
+}
 
-const Category = () => {
+const Category: FC<{ category: categoryInterface }> = ({ category }) => {
   return (
     <View>
       <View style={styles.imageContainer}>
@@ -41,5 +41,7 @@ const styles = StyleSheet.create({
   categoryName: {
     fontSize: SIZES.sm,
     color: COLORS.primaryGray300,
+    width: 60,
+    textAlign: "center",
   },
 });
