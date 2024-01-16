@@ -1,14 +1,19 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Pressable, View } from "react-native";
 import React, { FC } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-import { getImgUrl } from "../../utils/imageConstructor";
 import { ProductType } from "../../core/productTypes";
 import { COLORS, SIZES } from "../../constants/intex";
 import sizes from "../../constants/sizes";
 
 const ProductCard: FC<{ product: ProductType }> = ({ product }) => {
+  const { navigate } = useNavigation();
+
   return (
-    <View style={styles.ImageContainer}>
+    <Pressable
+      style={styles.ImageContainer}
+      onPress={() => navigate("single_product_screen", { id: product._id })}
+    >
       <Image
         style={styles.imageStyle}
         resizeMode="center"
@@ -16,7 +21,7 @@ const ProductCard: FC<{ product: ProductType }> = ({ product }) => {
           uri: `${process.env.API_URL}/images/${product.store}/products/${product.images[0]}`,
         }}
       />
-    </View>
+    </Pressable>
   );
 };
 

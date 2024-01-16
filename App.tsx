@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import store from "./src/store";
 
 import HomeScreen from "./src/screens/Home/HomeScreen";
+import SingleProductScreen from "./src/screens/SingleProductScreen";
 import { COLORS, SIZES } from "./src/constants/intex";
 
 const Stack = createNativeStackNavigator();
@@ -21,9 +22,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              // cardStyle: {
-              //   backgroundColor: "white",
-              // },
+              animation: "none",
               headerStyle: {
                 backgroundColor: COLORS.primaryGray500,
               },
@@ -32,17 +31,24 @@ export default function App() {
                 fontWeight: "100",
               },
               headerShadowVisible: false,
+              headerRight: ({ tintColor }) => (
+                <Feather name="shopping-cart" size={24} color={tintColor} />
+              ),
             }}
           >
             <Stack.Screen
               name="home_screen"
               options={{
                 title: "",
-                headerRight: ({ tintColor }) => (
-                  <Feather name="shopping-cart" size={24} color={tintColor} />
-                ),
               }}
               component={HomeScreen}
+            />
+            <Stack.Screen
+              name="single_product_screen"
+              options={{
+                title: "",
+              }}
+              component={SingleProductScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
