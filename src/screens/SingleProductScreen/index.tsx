@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
-import { SingleProductInterface } from "../features/products/_models";
-import { COLORS } from "../constants/intex";
-import { getProductById } from "../features/products/_requests";
+import { SingleProductInterface } from "../../features/products/_models";
+import { COLORS, SIZES } from "../../constants/intex";
+import { getProductById } from "../../features/products/_requests";
+import { globalStyles } from "../../styles/globalStyles";
+
+import SingleProductImages from "./SIngleProductImages";
 
 const SingleProductScreen = () => {
   const { params } = useRoute();
@@ -21,7 +24,7 @@ const SingleProductScreen = () => {
     });
   }, []);
 
-  if (loading)
+  if (loading || !product)
     return (
       <View style={styles.container}>
         <ActivityIndicator size={"large"} color={COLORS.primaryGreen500} />
@@ -29,15 +32,9 @@ const SingleProductScreen = () => {
     );
 
   return (
-    <View>
-      <Text>{product?.title}</Text>
-      <Image
-        source={{
-          uri: `${process.env.API_URL}/images/${product?.store}/products/${product?.images[0]}`,
-        }}
-        style={styles.productImage}
-        resizeMode="cover"
-      />
+    <View style={[globalStyles.screenContainer, { padding: SIZES.sm }]}>
+      <Text style={styles.productTitle}>{product?.title}</Text>
+      <SingleProductImages store={product?.store} images={product?.images} />
     </View>
   );
 };
@@ -50,9 +47,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
-  productImage: {
-    width: "100%",
-    height: 400,
+  productTitle: {
+    fontSize: SIZES.md,
+    fontWeight: "400",
+    marginBottom: SIZES.sm,
   },
 });
