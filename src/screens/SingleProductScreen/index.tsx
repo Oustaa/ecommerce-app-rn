@@ -7,6 +7,7 @@ import { SingleProductInterface } from "../../features/products/_models";
 import { COLORS, SIZES } from "../../constants/intex";
 import { getProductById } from "../../features/products/_requests";
 import { globalStyles } from "../../styles/globalStyles";
+import ProductSpicifications from "../../components/ProductSpicifications/indes";
 
 import SingleProductImages from "./SIngleProductImages";
 
@@ -35,6 +36,7 @@ const SingleProductScreen = () => {
     <View style={globalStyles.screenContainer}>
       <Text style={styles.productTitle}>{product?.title}</Text>
       <SingleProductImages store={product?.store} images={product?.images} />
+      <ProductSpicifications specifications={product.specifications} />
     </View>
   );
 };
