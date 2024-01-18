@@ -32,7 +32,7 @@ const SingleProductScreen = () => {
     );
 
   return (
-    <View style={[globalStyles.screenContainer, { padding: SIZES.sm }]}>
+    <View style={globalStyles.screenContainer}>
       <Text style={styles.productTitle}>{product?.title}</Text>
       <SingleProductImages store={product?.store} images={product?.images} />
     </View>
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
   productTitle: {
     fontSize: SIZES.md,
     fontWeight: "400",
-    marginBottom: SIZES.sm,
+    margin: SIZES.sm,
   },
 });

@@ -15,17 +15,20 @@ const SingleProductImages: FC<SingleProductImagesProps> = ({
 
   return (
     <View>
-      <View style={styles.productImageContainer}>
+      <View
+        style={[styles.productImageContainer, { marginHorizontal: SIZES.sm }]}
+      >
         <Image
           source={{
             uri: `${process.env.API_URL}/images/${store}/products/${displayedImage}`,
           }}
-          style={styles.productImage}
+          style={[styles.productImage]}
           resizeMode="contain"
         />
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
+        style={styles.productSmallThumbnailContainer}
         horizontal={true}
         data={images}
         renderItem={({ item }) => {
@@ -54,16 +57,21 @@ export default SingleProductImages;
 
 const styles = StyleSheet.create({
   productImageContainer: {
-    width: "100%",
+    // flex: 1,
     height: 250,
     borderWidth: 0.2,
     borderRadius: SIZES.xs,
     borderColor: COLORS.primaryGray300,
     padding: SIZES.sm,
     marginBottom: SIZES.sm,
+    // marginHorizontal: SIZES.sm,
   },
   productImage: {
     width: "100%",
     height: "100%",
+  },
+  productSmallThumbnailContainer: {
+    // flex: 1,
+    paddingHorizontal: SIZES.sm,
   },
 });
