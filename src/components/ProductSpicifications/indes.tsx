@@ -11,7 +11,9 @@ const ProductSpicifications: FC<{
 }> = ({ specifications }) => {
   return (
     <View style={styles.ProductSpicificationsContainer}>
-      <Title>Product's Specifications</Title>
+      <Title style={{ marginTop: SIZES.sm, marginBottom: SIZES.xs }}>
+        Product's Specifications
+      </Title>
       <FlatList
         data={specifications}
         renderItem={({ item }) => <ProductSpicification spicification={item} />}

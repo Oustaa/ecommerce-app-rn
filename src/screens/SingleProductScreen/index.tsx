@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 
 import { SingleProductInterface } from "../../features/products/_models";
 import { COLORS, SIZES } from "../../constants/intex";
@@ -10,10 +10,17 @@ import { globalStyles } from "../../styles/globalStyles";
 import ProductSpicifications from "../../components/ProductSpicifications/indes";
 
 import SingleProductImages from "./SIngleProductImages";
+import ProductDescription from "../../components/ProductDescription";
+
+type SingleProductRouteParams = {
+  id: string;
+};
 
 const SingleProductScreen = () => {
-  const { params } = useRoute();
+  const route =
+    useRoute<RouteProp<Record<string, SingleProductRouteParams>, string>>();
 
+  const { params } = route;
   const [loading, setLoading] = useState<boolean>(true);
   const [product, setProduct] = useState<SingleProductInterface | null>(null);
 
@@ -37,6 +44,7 @@ const SingleProductScreen = () => {
       <Text style={styles.productTitle}>{product?.title}</Text>
       <SingleProductImages store={product?.store} images={product?.images} />
       <ProductSpicifications specifications={product.specifications} />
+      <ProductDescription description={product.description} />
     </View>
   );
 };
