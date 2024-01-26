@@ -14,7 +14,7 @@ export default Title;
 const styles = StyleSheet.create({
   productsListTitle: {
     fontSize: SIZES.md,
-    marginBottom: SIZES.sm,
+    marginBottom: SIZES.xs,
     fontWeight: "700",
     color: COLORS.primaryGray500,
   },

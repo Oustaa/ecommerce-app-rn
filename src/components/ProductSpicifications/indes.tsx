@@ -5,12 +5,13 @@ import ProductSpicification from "./ProductSpicification";
 import Title from "../ui/Title";
 import { globalStyles } from "../../styles/globalStyles";
 import { SIZES } from "../../constants/intex";
+import SectionContainer from "../ui/SectionContainer";
 
 const ProductSpicifications: FC<{
   specifications: SpecificationInterface[];
 }> = ({ specifications }) => {
   return (
-    <View style={styles.ProductSpicificationsContainer}>
+    <SectionContainer>
       <Title style={{ marginTop: SIZES.sm, marginBottom: SIZES.xs }}>
         Product's Specifications
       </Title>
@@ -18,14 +19,8 @@ const ProductSpicifications: FC<{
         data={specifications}
         renderItem={({ item }) => <ProductSpicification spicification={item} />}
       />
-    </View>
+    </SectionContainer>
   );
 };
 
 export default ProductSpicifications;
-
-const styles = StyleSheet.create({
-  ProductSpicificationsContainer: {
-    marginHorizontal: SIZES.sm,
-  },
-});

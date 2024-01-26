@@ -6,6 +6,7 @@ import { SIZES } from "../../constants/intex";
 const ProductDescription: React.FC<{ description: string }> = ({
   description,
 }) => {
+  console.log(description);
   return (
     <View style={styles.ProductSpicificationsContainer}>
       <Title>Description</Title>

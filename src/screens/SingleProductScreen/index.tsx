@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
@@ -11,6 +11,7 @@ import ProductSpicifications from "../../components/ProductSpicifications/indes"
 
 import SingleProductImages from "./SIngleProductImages";
 import ProductDescription from "../../components/ProductDescription";
+import ProductAbouts from "../../components/ProductAbout";
 
 type SingleProductRouteParams = {
   id: string;
@@ -40,12 +41,19 @@ const SingleProductScreen = () => {
     );
 
   return (
-    <View style={globalStyles.screenContainer}>
+    <ScrollView
+      style={[globalStyles.screenContainer, { paddingBottom: SIZES.lg }]}
+    >
       <Text style={styles.productTitle}>{product?.title}</Text>
       <SingleProductImages store={product?.store} images={product?.images} />
-      <ProductSpicifications specifications={product.specifications} />
-      <ProductDescription description={product.description} />
-    </View>
+      {product.description && (
+        <ProductDescription description={product.description} />
+      )}
+      {product.specifications.length ? (
+        <ProductSpicifications specifications={product.specifications} />
+      ) : null}
+      {product.about.length ? <ProductAbouts abouts={product.about} /> : null}
+    </ScrollView>
   );
 };
 
