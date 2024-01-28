@@ -12,6 +12,7 @@ import ProductSpicifications from "../../components/ProductSpicifications/indes"
 import SingleProductImages from "./SIngleProductImages";
 import ProductDescription from "../../components/ProductDescription";
 import ProductAbouts from "../../components/ProductAbout";
+import Loader from "../../components/ui/Loader";
 
 type SingleProductRouteParams = {
   id: string;
@@ -33,12 +34,7 @@ const SingleProductScreen = () => {
     });
   }, []);
 
-  if (loading || !product)
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size={"large"} color={COLORS.primaryGreen500} />
-      </View>
-    );
+  if (loading || !product) return <Loader />;
 
   return (
     <ScrollView
@@ -60,11 +56,6 @@ const SingleProductScreen = () => {
 export default SingleProductScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   productTitle: {
     fontSize: SIZES.md,
     fontWeight: "400",
