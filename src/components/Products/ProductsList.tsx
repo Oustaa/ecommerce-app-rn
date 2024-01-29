@@ -9,11 +9,11 @@ import Title from "../ui/Title";
 const ProductsList: FC<{
   products: ProductType[];
   numColumns?: number;
-  title: string;
+  title?: string;
 }> = ({ products, numColumns = 2, title }) => {
   return (
     <View style={styles.productsListContainer}>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
       <FlatList
         data={products}
         renderItem={({ item }) => {

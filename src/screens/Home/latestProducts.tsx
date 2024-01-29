@@ -1,10 +1,11 @@
-import { StyleSheet, ActivityIndicator, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { ProductType } from "../../core/productTypes";
 import ProductsList from "../../components/Products/ProductsList";
 import { SIZES } from "../../constants/intex";
+import Loader from "../../components/ui/Loader";
 
 async function getLatestProducts(
   successCb: React.Dispatch<React.SetStateAction<ProductType[]>>,
@@ -30,7 +31,7 @@ const latestProducts = () => {
     getLatestProducts(setProducts, setLoading);
   }, []);
 
-  if (loading) return <ActivityIndicator />;
+  if (loading) return <Loader />;
 
   return <ProductsList products={products} title="Latest Uploaded Products" />;
 };

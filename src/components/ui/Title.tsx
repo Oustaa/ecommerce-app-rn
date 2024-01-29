@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   productsListTitle: {
     fontSize: SIZES.md,
     marginBottom: SIZES.xs,
-    fontWeight: "700",
+    fontWeight: "400",
     color: COLORS.primaryGray500,
   },
 });
