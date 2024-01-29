@@ -1,9 +1,9 @@
 import "react-native-gesture-handler";
 
-import { StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Feather } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Provider } from "react-redux";
 
@@ -14,8 +14,25 @@ import SingleProductScreen from "./src/screens/SingleProductScreen";
 import SubCategoryScreen from "./src/screens/SubCategoryScreen";
 
 import { COLORS, SIZES } from "./src/constants/intex";
+import CartScreen from "./src/screens/Cart";
+import { FC } from "react";
 
 const Stack = createNativeStackNavigator();
+
+const HeaderRight: FC<{ tintColor: string | undefined }> = ({ tintColor }) => {
+  const { navigate } = useNavigation();
+
+  return (
+    <Pressable
+      onPress={() => {
+        console.log("cart_screen");
+        navigate("cart_screen");
+      }}
+    >
+      <Feather name="shopping-cart" size={24} color={tintColor} />
+    </Pressable>
+  );
+};
 
 export default function App() {
   return (
@@ -34,7 +51,7 @@ export default function App() {
               },
               headerShadowVisible: false,
               headerRight: ({ tintColor }) => (
-                <Feather name="shopping-cart" size={24} color={tintColor} />
+                <HeaderRight tintColor={tintColor} />
               ),
             }}
           >
@@ -58,6 +75,13 @@ export default function App() {
                 title: "",
               }}
               component={SubCategoryScreen}
+            />
+            <Stack.Screen
+              name="cart_screen"
+              options={{
+                title: "",
+              }}
+              component={CartScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
