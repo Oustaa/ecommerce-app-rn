@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { FC } from "react";
 import { COLORS, SIZES } from "../../constants/intex";
+import { useNavigation } from "@react-navigation/native";
 
 interface categoryInterface {
   _id: string;
@@ -9,8 +10,11 @@ interface categoryInterface {
 }
 
 const Category: FC<{ category: categoryInterface }> = ({ category }) => {
+  const { navigate } = useNavigation();
   return (
-    <View>
+    <Pressable
+      onPress={() => navigate("category_screen", { categoryId: category._id })}
+    >
       <View style={styles.imageContainer}>
         <Image
           source={{
@@ -20,7 +24,7 @@ const Category: FC<{ category: categoryInterface }> = ({ category }) => {
         />
       </View>
       <Text style={styles.categoryName}>{category.name}</Text>
-    </View>
+    </Pressable>
   );
 };
 

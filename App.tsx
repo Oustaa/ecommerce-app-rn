@@ -11,6 +11,8 @@ import store from "./src/store";
 
 import HomeScreen from "./src/screens/Home/HomeScreen";
 import SingleProductScreen from "./src/screens/SingleProductScreen";
+import SubCategoryScreen from "./src/screens/SubCategoryScreen";
+
 import { COLORS, SIZES } from "./src/constants/intex";
 
 const Stack = createNativeStackNavigator();
@@ -50,6 +52,13 @@ export default function App() {
               }}
               component={SingleProductScreen}
             />
+            <Stack.Screen
+              name="category_screen"
+              options={{
+                title: "",
+              }}
+              component={SubCategoryScreen}
+            />
           </Stack.Navigator>
         </NavigationContainer>
         <StatusBar style="light" />
@@ -64,4 +73,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
 });
-
