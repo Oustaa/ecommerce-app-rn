@@ -1,7 +1,14 @@
-import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 import { SingleProductInterface } from "../../features/products/_models";
 import { COLORS, SIZES } from "../../constants/intex";
@@ -40,7 +47,25 @@ const SingleProductScreen = () => {
     <ScrollView
       style={[globalStyles.screenContainer, { paddingBottom: SIZES.lg }]}
     >
-      <Text style={styles.productTitle}>{product?.title}</Text>
+      <View style={styles.productHeader}>
+        <Text style={styles.productTitle}>{product?.title}</Text>
+        <View style={styles.productInfo}>
+          <Text>
+            {getSymbolFromCurrency(product.currency)}
+            {product.price}
+          </Text>
+          <Text>{product.store}</Text>
+          <Text>{product.QandA.length} Answered questions</Text>
+        </View>
+        <View style={styles.productActions}>
+          <Pressable style={styles.productButton}>
+            <Text style={styles.productButtonText}>Add to cart</Text>
+          </Pressable>
+          <Pressable style={styles.productButton}>
+            <Text style={styles.productButtonText}>Add to wishlist</Text>
+          </Pressable>
+        </View>
+      </View>
       <SingleProductImages store={product?.store} images={product?.images} />
       {product.description && (
         <ProductDescription description={product.description} />
@@ -56,9 +81,33 @@ const SingleProductScreen = () => {
 export default SingleProductScreen;
 
 const styles = StyleSheet.create({
+  productHeader: {
+    marginHorizontal: SIZES.sm,
+    marginVertical: SIZES.md,
+    gap: SIZES.xs,
+  },
   productTitle: {
     fontSize: SIZES.md,
     fontWeight: "400",
-    margin: SIZES.sm,
+  },
+  productInfo: {
+    flexDirection: "row",
+    gap: SIZES.md,
+    alignItems: "center",
+  },
+  productActions: {
+    flexDirection: "row",
+    gap: SIZES.md,
+    alignItems: "center",
+  },
+  productButton: {
+    flex: 1,
+    backgroundColor: COLORS.primaryGreen500,
+    padding: SIZES.sm,
+    borderRadius: SIZES.xs,
+  },
+  productButtonText: {
+    color: "#FFF",
+    textAlign: "center",
   },
 });

@@ -38,7 +38,10 @@ const SubCategoryScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       {productsByCategoryId.length ? (
         productsByCategoryId.map((subCategory) => (
-          <ProductsBySubCategory subCategory={subCategory} />
+          <ProductsBySubCategory
+            subCategory={subCategory}
+            key={subCategory._id}
+          />
         ))
       ) : (
         <Text>This Category has no products</Text>

@@ -19,6 +19,9 @@ const ProductSpicifications: FC<{
         data={specifications}
         renderItem={({ item }) => <ProductSpicification spicification={item} />}
       />
+      {specifications.map((specification, index) => (
+        <ProductSpicification key={index} spicification={specification} />
+      ))}
     </SectionContainer>
   );
 };
